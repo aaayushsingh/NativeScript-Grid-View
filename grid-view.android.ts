@@ -86,7 +86,7 @@ export class GridView extends GridViewBase {
 
   public disposeNativeView() {
     // clear the cache
-    this.eachChildView(view => {
+    this.eachChildView((view: any) => {
       view.parent._removeView(view);
       return true;
     });
@@ -254,7 +254,7 @@ export class GridView extends GridViewBase {
 
 // Snapshot friendly GridViewScrollListener
 interface GridViewScrollListener
-  extends androidx.recyclerview.widget.RecyclerView.OnScrollListenerr {
+  extends androidx.recyclerview.widget.RecyclerView.OnScrollListener {
   // tslint:disable-next-line:no-misused-new
   new (owner: WeakRef<GridView>): GridViewScrollListener;
 }
@@ -265,9 +265,8 @@ function initGridViewScrollListener() {
   if (GridViewScrollListener) {
     return;
   }
-
   class GridViewScrollListenerImpl extends androidx.recyclerview.widget
-    .RecyclerView.OnScrollListenerr {
+    .RecyclerView.OnScrollListener {
     constructor(private owner: WeakRef<GridView>) {
       super();
 
